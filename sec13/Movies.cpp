@@ -34,23 +34,30 @@ Movies::~Movies() {
     *********************************************************************/
 bool Movies::add_movie(std::string name, std::string rating, int watched) {
     // you implement this method
-    //auto it = std::find(movies.cbegin(), movies.cend(), name);  // search the name
     if (movies.empty()) {
         movies.emplace_back(name, rating, watched);  // add the movie
         std::cout << "Added into an empty vec" << std::endl;
         return true;
     }
+    
+    bool found = false;
     for (auto &e : movies) {
         if (e.get_name() == name) {
-            std::cout << "Movies::add_movie() - Error, cannot add movie, the movie has already existed!" << std::endl;
-            return false;
+            found = true;
+            break;
         } else {
-            movies.emplace_back(name, rating, watched);  // add the movie
-            std::cout << "The movie: " << name << " has been successfully added!" << std::endl;
-            return true;
+            found = false;
         }
     } 
-    return false;
+    
+    if (found) {
+        //std::cout << "Movies::add_movie() - Error, cannot add movie, the movie has already existed!" << std::endl;
+        return false;
+    } else {
+        movies.emplace_back(name, rating, watched);  // add the movie
+        //std::cout << "The movie: " << name << " has been successfully added!" << std::endl;
+        return true;
+    }
 }
 
  /*************************************************************************
@@ -66,6 +73,21 @@ bool Movies::add_movie(std::string name, std::string rating, int watched) {
     *********************************************************************/
 bool Movies::increment_watched(std::string name) {
    // you implement this method
+   if (movies.empty()) { // if moview list is empty, return false
+       return false;
+   }
+
+   for (auto &e: movies) {
+       if (e.get_name() == name) {
+           e.increment_watched();
+           return true;
+       }
+       else {
+           ;  // do nothing, keep going on
+       }
+   }
+   // if not found the movie, return false
+
    return false;
 }
 
@@ -78,4 +100,14 @@ bool Movies::increment_watched(std::string name) {
     *********************************************************************/
 void Movies::display() const {
    // You implement this method
+   if (movies.empty()) {
+       std::cout << "Cannot display empty movies list" << std::endl;
+       return;
+   }
+
+   std::cout << "----Display the current movie that has been watched----" << std::endl;
+   for (auto &e: movies) {
+       e.display();
+   }
+   std::cout << "------------------Display Ends ------------------" << std::endl;
 }
