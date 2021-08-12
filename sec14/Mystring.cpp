@@ -19,6 +19,7 @@ Mystring::Mystring(const char *s)
             str = new char[strlen(s)+1];
             strcpy(str, s);
         }
+        std::cout << "Overloaded Constructor: Created Object" << std::endl;
 }
 
 // Copy constructor
@@ -51,6 +52,7 @@ Mystring &Mystring::operator=(const Mystring &rhs) {
     delete [] str;
     str = new char[strlen(rhs.str) + 1];
     strcpy(str, rhs.str);
+    std::cout << "Copy Assignment get called" << std::endl;
     return *this;
 }
 
@@ -62,6 +64,7 @@ Mystring &Mystring::operator=( Mystring &&rhs) {
     delete [] str;
     str = rhs.str;
     rhs.str = nullptr;
+    std::cout << "Move Assignment get called" << std::endl;
     return *this;
 }
 
@@ -72,8 +75,8 @@ void Mystring::display() const {
 }
 
  // getters
- int Mystring::get_length() const { return strlen(str); }
- const char *Mystring::get_str() const { return str; }
+int Mystring::get_length() const { return strlen(str); }
+const char *Mystring::get_str() const { return str; }
 
 // overloaded insertion operator
 std::ostream &operator<<(std::ostream &os, const Mystring &rhs) {
@@ -90,3 +93,59 @@ std::istream &operator>>(std::istream &in, Mystring &rhs) {
     return in;
 }
 
+// overloaded == operator
+bool Mystring::operator==(const Mystring &rhs) const {
+    if (std::strcmp(str, rhs.str) == 0)  // string matched
+        return true;
+    else
+        return false;
+}
+
+// overloaded != operator
+bool Mystring::operator!=(const Mystring &rhs) const {
+    if (std::strcmp(str, rhs.str) == 0)  // string matched
+        return false;
+    else
+        return true;
+}
+
+// overloaded > operator
+bool Mystring::operator>(const Mystring &rhs) const {
+    for (auto i = 0; i < strlen(str); i++) {
+        if (str[i] == rhs.str[i]) {
+            ; // do nothing, go to next iteration
+        }
+        else if (str[i] > rhs.str[i])
+            return true;
+        else
+            return false;
+    }
+
+    return false;
+}
+
+// overloaded < operator
+bool Mystring::operator<(const Mystring &rhs) const {
+    for (auto i = 0; i < strlen(str); i++) {
+        if (str[i] == rhs.str[i]) {
+            ; // do nothing, go to next iteration
+        }
+        else if (str[i] < rhs.str[i])
+            return true;
+        else
+            return false;
+    }
+
+    return false;
+}
+
+// overload - operator
+Mystring Mystring::operator-() const {
+    char* buff = new char[std::strlen(str)+1];
+    strcpy(buff, str);  // str copy to buff
+    for (auto i = 0; i < std::strlen(buff); i++)
+        buff[i] = std::tolower(buff[i]);
+    Mystring tmp {buff};
+    delete [] buff;
+    return tmp;
+}

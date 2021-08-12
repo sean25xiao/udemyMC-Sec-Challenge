@@ -6,11 +6,12 @@
 using namespace std;
 
 int main() {
-    /*
+    
     
     cout << boolalpha << endl;
-    Mystring a {"frank"};
-    Mystring b {"frank"};
+    Mystring a {"frank"};  // overloaded constructor
+    Mystring b {"frank"};  // overloaded constructor
+
 
     cout << (a==b) << endl;         // true
     cout << (a!=b) << endl;          // false
@@ -18,14 +19,25 @@ int main() {
     b = "george";
     cout << (a==b) << endl;         // false
     cout << (a!=b) << endl;          // true
-     cout << (a<b) << endl;          // true
+
+    cout << "===================" << endl;
+    
+    cout << (a<b) << endl;          // true
     cout << (a>b) << endl;           // false
     
-    Mystring s1 {"FRANK"};
+    cout << "===================" << endl;
+
+    b = "frank";
+    cout << (a<b) << endl;          // false 
+    cout << (a>b) << endl;           // false
+    
+    cout << "===================" << endl;
+    
+    Mystring s1 {"FRANK HI ARE YOU GOOD?"};
     s1 = -s1;       
     cout << s1 << endl;               // frank              
 
-    s1 = s1 + "*****";
+ /*   s1 = s1 + "*****";
     cout << s1 << endl;               // frank*****       
     
     s1 += "-----";                        // frank*****-----

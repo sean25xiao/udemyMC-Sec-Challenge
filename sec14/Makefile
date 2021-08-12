@@ -1,17 +1,14 @@
 CXX=g++
 CXXFLAGS=-Werror -std=c++17
 
-DEPS=Movie.h Movies.h
+DEPS=Mystring.h
 OBJECTS=main.o Mystring.o
 TARGET=sec14run
 
 all: $(TARGET)
 
 $(TARGET): $(OBJECTS)
-        $(CXX) $(CXXFLAGS) -o $@ $^
-
-#%.o: %.cpp $(DEPS)                                                             
-#       $(CXX) $(CXXFLAGS) -o $@ $<                                             
+	$(CXX) $(CXXFLAGS) -o $@ $^
 
 clean:
-        rm -rf *.o sec14run
+	rm -rf *.o sec14run 
