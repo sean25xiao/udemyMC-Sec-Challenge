@@ -149,3 +149,49 @@ Mystring Mystring::operator-() const {
     delete [] buff;
     return tmp;
 }
+
+// overload + operator
+Mystring Mystring::operator+(const Mystring &rhs) const {
+    auto buff_size = std::strlen(str) + std::strlen(rhs.str) + 1;
+    char* buff = new char[buff_size];
+    strcpy(buff, str);  // str copy to buff
+    std::strcat(buff, rhs.str);
+    Mystring tmp {buff};
+    delete [] buff;
+    return tmp;
+}
+
+// overload += operator
+Mystring& Mystring::operator+=(const Mystring &rhs) {
+    *this = *this + rhs.str;  // use the overloaded + operation
+    return (*this);
+}
+
+// overload * operator
+Mystring Mystring::operator*(const int num) const {
+    Mystring tmp;
+    for (int i = 0; i < num; i++) {
+        tmp += *this;
+    }
+    return tmp;
+}
+
+// overload *= operator
+Mystring& Mystring::operator*=(const int num) {
+    *this = *this * num;
+    return *this;
+}
+
+// overload ++ operator pre-increment
+Mystring& Mystring::operator++() {  // pre-increment
+    for (auto i = 0; i < std::strlen(this->str); i++)
+        str[i] = std::toupper(str[i]);
+    return *this;
+}
+
+// overload other ++ operator post-increment
+Mystring Mystring::operator++(int) {
+    Mystring temp {*this};   // make a copy
+    operator++();     // call the pre-increment to increment self
+    return temp;      // return old value
+}

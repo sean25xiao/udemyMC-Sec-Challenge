@@ -33,6 +33,18 @@ public:
     bool operator>(const Mystring &rhs) const;
 
     Mystring operator-() const;
+
+    Mystring operator+(const Mystring &rhs) const;
+
+    Mystring& operator+=(const Mystring &rhs);
+
+    Mystring operator*(const int num) const;
+
+    Mystring& operator*=(const int num);
+
+    Mystring& operator++();  // pre-increment overloading
+ 
+    Mystring operator++(int);  // post-inrement overloading
 };
 
 #endif // _MYSTRING_H_

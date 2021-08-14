@@ -37,11 +37,13 @@ int main() {
     s1 = -s1;       
     cout << s1 << endl;               // frank              
 
- /*   s1 = s1 + "*****";
+    s1 = s1 + "*****";
     cout << s1 << endl;               // frank*****       
     
-    s1 += "-----";                        // frank*****-----
+    s1 += "=======";                        // frank*****-----
     cout << s1 << endl;
+
+    cout << "===================" << endl;
     
     Mystring s2{"12345"};
     s1 = s2 * 3;
@@ -51,6 +53,8 @@ int main() {
     s3 *= 5;
     cout << s3 << endl;             // abcdefabcdefabcdefabcdefabcdef
     
+    cout << "===================" << endl;
+
     Mystring s = "Frank";
     ++s;
     cout << s << endl;                  // FRANK
@@ -73,7 +77,7 @@ int main() {
     cout << s << endl;                  // FRANK
     cout << result << endl;           // frank
     
-    */
+    
     return 0;
 }
 
